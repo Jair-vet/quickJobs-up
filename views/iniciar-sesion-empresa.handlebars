@@ -1,0 +1,30 @@
+<main class="contenedor">
+    <form action="/iniciar-sesion-empresa" method="POST" class="default-form">
+
+        <h2>Iniciar Sesión</h2>
+        
+        {{!-- Email --}}
+        <div class="campo">
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="Tu Email" required>
+        </div>
+
+        {{!-- Password --}}
+        <div class="wrapp-input">
+            <label>Password</label>
+            <span class="icon-eye">
+                <i class="fa-solid fa-eye-slash "></i>
+            </span>
+            <input type="password" name="password" placeholder="Ingrese su Contraseña" required> 
+        </div>
+
+        {{!-- Bótones de Navegación --}}
+        <div class="campo acciones">
+            <a href="/registro-empresa">Crear una Cuenta</a>
+            <a href="/reestablecer-password-empresa">Olvidé mi password</a>
+        </div>
+        <div class="campo">
+            <input type="submit" value="Iniciar Sesión" class="btn btn-azul">
+        </div>
+    </form>
+</main>

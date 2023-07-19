@@ -1,0 +1,53 @@
+<main class="lista-vacantes">
+    <h2>Navegación</h2>
+    <div class="botones separador">
+        <a href="/editar-perfil" class="btn btn-rosa">Editar Perfil</a>
+        <a href="/revisar-perfil" class="btn btn-morado">Revisa Tu Perfil</a>
+        <a href="/datos/tablas" class="btn btn-azul">Ver Estadisticas</a>
+        <a href="/uploads-estudiante" class="btn btn-verde">Subir Imagen</a>
+    </div>
+
+    <h2>Vacantes</h2>
+
+    {{#if vacantes.length}}
+        {{#each vacantes}}
+            <div class="vacante">
+
+                <div class="caja">
+                    <p class="etiqueta">Titulo</p>
+                    <p class="nombre">{{titulo}}</p>
+                </div>
+                <div class="caja">
+                    <p class="etiqueta">Salario</p>
+                    <p class="nombre">{{salario}}</p>
+                </div>
+                <div class="caja">
+                    <p class="etiqueta">Ubicación</p>
+                    <p class="nombre">{{ubicacion}}</p>
+                </div>
+                <div class="caja centrar-vertical">
+                    <a href="/vacantes/{{url}}" class="btn btn-verde">Postúlate</a>
+                </div>
+
+            </div> 
+        {{/each}}
+    {{else}}
+        <p>No hay Vacantes</p>
+    {{/if}}
+</main>
+
+  {{!-- Paginacion --}}
+    {{#if paginacionEstudiante}}
+    <div class="contenedor-paginador">
+        <div class="paginador">
+            <ul class="paginas">
+                {{#if activarPrevEstu}}
+                    <a href="?page={{prevPageEstu}}" class="btn btn-mora prev"><i class="fas fa-backward"></i> Prev </a>
+                {{/if}}
+                {{#if activarNextEstu}}
+                    <a href="?page={{nextPageEstu}}" class="btn btn-mora next"> Next <i class="fas fa-forward"></i></a>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+    {{/if}}

@@ -1,0 +1,88 @@
+<main class="contenedor">
+    <form action="/estudiante-empresa" method="POST" class="default-form">
+
+
+        {{!-- Selectores --}}
+        <div class="container-all">
+            {{!-- Estudiante --}}
+            <a href="/crear-cuenta" id="estudiante" class="container-box">
+                <div class="box">
+                    <h4 class="titulo">Estudiante</h4>
+
+                    <i class="fa-solid fa-users-viewfinder icon"></i>
+                    <p class="texto"> <span>Revisa Ofertas de Empleo de IT</span> 
+                        Registrate y conoce todas las Empresas que ofrecen Empleos nuevos a los que podras postularte.
+                    </p>
+                    <div class="background-hover"></div>
+                </div>
+            </a>
+
+            {{!-- Empresa --}}
+            <a href="/registro-empresa" id="empresa" class="container-box">
+                <div class="box">
+                    <h4 class="titulo" >Empresa</h4>
+
+                    <i class="fa-solid fa-business-time icon"></i>
+                    <p class="texto"> <span>Recluta perfiles IT en menos tiempo más fácilmente</span> 
+                        Registrate y Crea Empleos para tu empresa de una manera sencilla
+                    </p>
+                    <div class="background-hover"></div>
+                </div>
+            </a>
+        </div>
+
+        <!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+
+    
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+
+        function drawBasic() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Lenguaje', 'Lenguajes más Populares',],
+                ['JavaScript', 16400000],
+                ['Python', 11300000],
+                ['Java', 9600000],
+                ['C/C++', 7500000],
+                ['PHP', 7300000],
+                ['C#', 7100000],
+                ['Visula Development tools', 3600000],
+                ['Kotlin', 2900000],
+                ['Swift', 2500000],
+                ['Go', 2000000],
+                ['Dart', 1400000],
+                ['Objective C', 1400000],
+            ]);
+
+            var options = {
+                title: '2021 Lenguajes más Populares',
+                chartArea: {width: '50%'},
+                hAxis: {
+                title: 'Total Votos',
+                minValue: 0
+                },
+                vAxis: {
+                title: 'Lenguaje'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+            }
+        </script>
+    </head>
+
+    <body>
+        <!--Div de la Grafica-->
+        <div class="contenedor-grafica">
+            <div id="chart_div" class="grafica"></div>
+        </div>
+    </body>
+
+
+    </form>
+</main>

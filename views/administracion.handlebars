@@ -1,0 +1,58 @@
+<main class="lista-vacantes">
+    <h2>Navegación</h2>
+    <div class="botones separador">
+        <a href="/editar-empresa" class="btn btn-rosa">Editar Perfil</a>
+        <a href="/uploads/" class="btn btn-morado">Editar Logo</a>
+        <a href="/mostrar-estudiante" class="btn btn-azul">Revisar Perfiles</a>
+        <a href="/vacantes/nueva" class="btn btn-verde">Crear Vacante</a>
+    </div>
+
+    <h2>Tus Vacantes</h2>
+
+    <div class="panel-administracion">
+        {{#if vacantes.length }}
+            {{#each vacantes}}
+                <div class="vacante ">
+                    <div class="caja1">
+                        <h3>{{empresa}}</h3>
+                        <p class="puesto">{{titulo}}</p>
+                        <p class="candidatos">
+                            {{candidatos.length}} Candidato's
+                        </p>
+                        
+                    </div>
+                    <div class="contenedor-botones">
+                        <div class="centrar-vertical caja1">
+                            <a href="/candidatos/{{id}}" class="btn btn-verdea">Candidatos</a>
+                        </div>
+                        <div class="centrar-vertical caja1">
+                            <a href="/vacantes/editar/{{url}}" class="btn btn-amarillo">Editar</a>
+                        </div>
+                        <div class="centrar-vertical caja1">
+                            <a href="#" data-eliminar={{id}} class="btn btn-rojo">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <p>No Tienes vacantes,  Crea una nueva y empieza a Reclutar</p>
+        {{/if}}
+    </div>
+</main>
+
+
+{{!-- Paginacion --}}
+{{#if paginacionEmpresa}}
+<div class="contenedor-paginador">
+    <div class="paginador">
+        <ul class="paginas">
+            {{#if activarPrevEmpre}}
+                <a href="?page={{prevPageEmpre}}" class="btn btn-mora prev"><i class="fas fa-backward"></i> Prev </a>
+            {{/if}}
+            {{#if activarNextEmpre}}
+                <a href="?page={{nextPageEmpre}}" class="btn btn-mora next"> Next <i class="fas fa-forward"></i></a>
+            {{/if}}
+        </ul>
+    </div>
+</div>
+{{/if}}

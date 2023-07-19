@@ -1,0 +1,53 @@
+<main class="lista-vacantes">
+
+    <div id="myApp">
+
+        <h2>Empresas que Publican sus Vacantes</h2>
+    </div>
+    
+    {{#if logo.length}}
+        <div class="empresas">
+        {{#each logo}}
+            {{#if imagen.length}}
+                <div class="cajaImagen">
+                    <img src="{{ imagen }}">
+                </div>
+            {{/if}}
+        {{/each}}
+        </div> 
+    {{else}}
+        <p>No hay Empresas</p>
+    {{/if}}
+    <p>Ellos confían en QuickJobs para encontrar los mejores Talentos de la Industria Técnologica</p>
+    
+
+    <h2>Lista de Vacantes</h2>
+
+    {{#if vacantes.length}}
+        {{#each vacantes}}
+            <div id="vacantes" class="vacante">
+
+                <div class="caja">
+                    <p class="etiqueta">Titulo</p>
+                    <p class="nombre">{{titulo}}</p>
+                </div>
+                <div class="caja">
+                    <p class="etiqueta">Salario</p>
+                    <p class="nombre">{{salario}}</p>
+                </div>
+                <div class="caja">
+                    <p class="etiqueta">Ubicación</p>
+                    <p class="nombre">{{ubicacion}}</p>
+                </div>
+                <div class="caja centrar-vertical">
+                    <a href="/vacantes/{{url}}" class="btn btn-verde">Postúlate</a>
+                </div>
+
+            </div> 
+        {{/each}}
+    {{else}}
+        <p>No hay Vacantes</p>
+    {{/if}}
+
+
+</main>

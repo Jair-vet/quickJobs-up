@@ -1,0 +1,36 @@
+<main class="lista-candidatos">
+    <h2>Lista de tus Candidatos</h2>
+    {{#if candidatos.length}}
+        {{#each candidatos}}
+            <div class="candidato">
+                <div class="caja">
+                    <p class="etiqueta">Nombre</p>
+                    <p class="nombre">{{nombre}}</p>
+                </div>
+                <div class="caja">
+                    <p class="etiqueta">E-mail</p>
+                    <p class="nombre">{{email}}</p>
+                </div>
+                <div class="caja">
+                    <p class="etiqueta">Teléfono</p>
+                    <p class="nombre">{{cel}}</p>
+                </div>
+                <div class="conteiner-botones">
+                    {{!-- Ver CV --}}
+                    <div class="centrar-vertical caja">
+                        <a href="{{cv}}" class="btn btn-verde1"> Ver CV </a>
+                    </div>
+                    
+                </div>
+                {{!-- Eliminar
+                <form action="/candidatos/delete/{{_id}}?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button href="#" class="btn btn-rojo1">Eliminar</button>  
+                </form> --}}
+            </div>
+        {{/each}}
+    {{else }}
+        <p>No hay candidatos aún </p>
+
+    {{/if}}
+</main>

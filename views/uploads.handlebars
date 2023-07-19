@@ -1,0 +1,44 @@
+<main class="contenedor">
+    <form action="/uploads/" method="POST" class="default-form" enctype="multipart/form-data">
+        
+        <h2>Logo de tu Empresa</h2>
+        
+        <div class="box-logo">
+
+            <div class="logotipo">
+
+                 {{!-- Titulo --}}
+                <div class="campo">
+                    <label>Título</label>
+                    <input  type="text" name="titulo" placeholder="Título Imagen">
+                </div>
+          
+                {{!-- Imagen --}} 
+                {{#if Silogo}} 
+                    <div class="campo">
+                        <label>Imagen</label>
+                        <img src="{{ imagenEmpresa }} " class="admin-perfil">
+                    </div>
+                {{/if}}
+                {{#if Nologo}} 
+                    <div class="campo">
+                        <label>Imagen</label>
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="perfil" class="admin-perfil"/>
+                    </div>
+                {{/if}}
+
+                <div class="contenedor-btn-file bordeado">
+                    <i class="fas fa-file"></i>
+                        Selecciona Imagen
+                    <label for="image"></label>
+                    <input type="file" id="image" name="image">
+                </div>
+
+                <div class="campo">
+                    <input type="submit" class="btn btn-azul" value="Guardar Cambios">
+                </div>
+            </div>
+        </div>
+
+    </form>
+</main>

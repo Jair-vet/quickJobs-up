@@ -1,0 +1,62 @@
+<main class="contenedor">
+    <form action="/empresas" method="POST" class="default-form" >
+
+        <h2 class="herramientas"><br> <span class="dialogo"> </span></h2>
+        {{!-- <div class="container">
+            {{#if empresas.length}}
+                {{#each imagen}}
+                    <div class="card-container">
+                        <div class="head-imagen">
+                            <img src="{{ imagenEmpresa }}">
+                        </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                <p>No hay Empresas</p>
+            {{/if}}
+
+        </div> --}}
+
+        <div class="container-all">
+            {{!-- Estudiante --}}
+            <a href="/crear-cuenta" id="estudiante" class="container-box">
+                <div class="box">
+                    <h4 class="titulo">Estudiante</h4>
+
+                    <i class="fa-solid fa-users-viewfinder icon"></i>
+                    <p class="texto"> <span>Revisa Ofertas de Empleo de IT</span> 
+                        Registrate y conoce todas las Empresas que ofrecen Empleos nuevos a los que podras postularte.
+                    </p>
+                    <div class="background-hover"></div>
+                </div>
+            </a>
+
+            {{!-- Empresa --}}
+            <a href="/registro-empresa" id="empresa" class="container-box">
+                <div class="box">
+                    <h4 class="titulo" >Empresa</h4>
+
+                    <i class="fa-solid fa-business-time icon"></i>
+                    <p class="texto"> <span>Recluta perfiles IT en menos tiempo más fácilmente</span> 
+                        Registrate y Crea Empleos para tu empresa de una manera sencilla
+                    </p>
+                    <div class="background-hover"></div>
+                </div>
+            </a>
+        </div>
+       
+    </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+    const typed = new Typed('.dialogo', {
+        strings: ['','Elige el Tipo de Cuenta', 
+        'Encuentra Trabajos Remotos', 
+        'Sube Nuevas Vacantes', 'Recluta Estudiantes',
+    ],
+        typeSpeed: 200,
+        backSpeed: 150,
+        loop: true
+    })
+</script>

@@ -1,0 +1,51 @@
+<body class="dark">
+    <main class="main">
+        {{!--  Carta del Perfil Estudiante  --}}
+        {{#if usuario}}
+          <div class="container">
+            <div class="card-container">
+              <div class="head-imagen">
+                {{!-- Imagen --}}
+                {{#if Silogo}}
+                  <a href="#">
+                    <img src="{{ imagenEstudiante }}" alt="perfil"/>
+                  </a>
+                {{/if}}
+                {{#if Nologo}}
+                  <a href="#">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="perfil"/>
+                  </a>
+                {{/if}}
+                {{!-- Nombre --}}
+                <h2 class="titulo">{{ usuario.nombre }}</h2>
+                {{!-- Email --}}
+                <div class="card-email">
+                    <i class="fas fa-envelope icon"></i>
+                    <a href="#">{{ usuario.email }}</a>
+                </div>
+
+                {{!-- Celular --}}
+                <div class="card-celular">
+                  <i class="fas fa-phone-alt icon"></i>
+                  <a href="#"> {{ usuario.celular }} </a>
+                </div>
+              </div>
+
+              <div class="separar-info">
+                {{!-- Descripción --}}
+                <div class="descripcionE">
+                  <h4>Descripción</h4>
+                  <p>{{ usuario.descripcion }}</p>
+                  {{!-- Skills --}}
+                  <div class="social">
+                    <h4>Skills</h4>
+                      <p>{{usuario.skills}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        {{/if}}
+    </main>
+  </body>

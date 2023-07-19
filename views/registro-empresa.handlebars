@@ -1,0 +1,122 @@
+<main class="contenedor">
+    <form action="/registro-empresa" method="POST" class="default-form">
+
+        <h2 class="Bienvenido">Registrate o Elige el tipo de Cuenta</h2>
+        {{!-- Selectores --}}
+        <div class="container-all">
+            {{!-- Estudiante --}}
+            <a href="/crear-cuenta" id="estudiante" class="container-box">
+                <div class="box">
+                    <h4 class="titulo">Estudiante</h4>
+
+                    <i class="fa-solid fa-users-viewfinder icon"></i>
+                    <p class="texto"> <span>Revisa Ofertas de Empleo de IT</span> 
+                        Registrate y conoce todas las Empresas que ofrecen Empleos nuevos a los que podras postularte.
+                    </p>
+                    <div class="background-hover"></div>
+                </div>
+            </a>
+
+            {{!-- Empresa --}}
+            <a href="/registro-empresa" id="empresa" class="container-box">
+                <div class="box">
+                    <h4 class="titulo" >Empresa</h4>
+
+                    <i class="fa-solid fa-business-time icon"></i>
+                    <p class="texto"> <span>Recluta perfiles IT en menos tiempo más fácilmente</span> 
+                        Registrate y Crea Empleos para tu empresa de una manera sencilla
+                    </p>
+                    <div class="background-hover"></div>
+                </div>
+            </a>
+        </div>
+
+         <div class="formulario">
+            <h2 class="Bienvenido">Bienvenido</h2>
+            
+            <div id="empresa">
+                {{!-- Nombre Empresa --}}
+                <div class="campo">
+                    <label>Nombre Empresa</label>
+                    <input type="text" name="empresa" placeholder="Escibe el Nombre de Tu Empresa" required>
+                </div>
+
+                {{!-- Nombre Jefe--}}
+                <div class="campo">
+                    <label>Nombre Encargado</label>
+                    <input type="text" name="jefe" placeholder="Escibe el Nombre del Encargado" required>
+                </div>
+
+                {{!-- Celular --}}
+                <div class="campo">
+                    <label>Celular</label>
+                    <input type="text" name="celular" placeholder="Escibe tu celular para Contactarte" required>
+                </div>
+
+                {{!-- Email --}}
+                <div class="campo">
+                    <label>E-mail</label>
+                    <input type="email" name="email" placeholder="Escribe Tu E-Mail" required>
+                </div>
+
+                {{!-- Password --}}
+                <div class="campo wrapp-input create-password">
+                        <label>Password</label>
+                        <input
+                        type="password"
+                        placeholder="Escribe tu password"
+                        class="password"
+                        name="password"
+                        required/>
+                        <i class="icon-eye bx bx-hide show-hide"></i>
+                    </div>
+                
+                {{!-- Confirmar Password --}}
+                    <div class="campo wrapp-input confirm-password">
+                        <label>Confirmar Password</label>
+                        <input
+                        type="password"
+                        placeholder="Confirma tu password"
+                        class="confirmar"
+                        name="confirmar"
+                        required/>
+                        <i class="icon-eye bx bx-hide show-hide"></i>
+                    </div>
+        </div>
+
+        {{!-- Botones --}}
+        <div class="campo acciones">
+            <a href="/iniciar-sesion">Iniciar Sesión</a>
+        </div>
+
+        <div class="campo">
+            <input type="submit" value="Crear Cuenta" class="btn btn-azul">
+        </div>
+
+       
+
+    </form>
+</main>
+
+<script>
+const form = document.querySelector("form"),
+passField = form.querySelector(".create-password"),
+passInput = passField.querySelector(".password"),
+cPassField = form.querySelector(".confirm-password"),
+cPassInput = cPassField.querySelector(".confirmar");
+
+// Hide and show password
+const eyeIcons = document.querySelectorAll(".show-hide");
+
+eyeIcons.forEach((eyeIcon) => {
+    eyeIcon.addEventListener("click", () => {
+        const pInput = eyeIcon.parentElement.querySelector("input"); //getting parent element of eye icon and selecting the password input
+        if (pInput.type === "password") {
+        eyeIcon.classList.replace("bx-hide", "bx-show");
+        return (pInput.type = "text");
+        }
+        eyeIcon.classList.replace("bx-show", "bx-hide");
+        pInput.type = "password";
+    });
+});
+</script>

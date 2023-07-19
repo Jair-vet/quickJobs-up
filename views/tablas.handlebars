@@ -1,0 +1,54 @@
+
+
+ <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Lenguaje', 'Lenguajes más Populares',],
+            ['JavaScript', 16400000],
+            ['Python', 11300000],
+            ['Java', 9600000],
+            ['C/C++', 7500000],
+            ['PHP', 7300000],
+            ['C#', 7100000],
+            ['Visula Development tools', 3600000],
+            ['Kotlin', 2900000],
+            ['Swift', 2500000],
+            ['Go', 2000000],
+            ['Dart', 1400000],
+            ['Objective C', 1400000],
+        ]);
+
+        var options = {
+            title: '2021 Lenguajes más Populares',
+            chartArea: {width: '50%'},
+            hAxis: {
+            title: 'Total Votos',
+            minValue: 0
+            },
+            vAxis: {
+            title: 'Lenguaje'
+            }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+        }
+
+    </script>
+
+
+    <body>
+        <!--Div de la Grafica-->
+        <div class="contenedor-grafica">
+            <div id="chart_div" class="grafica"></div>
+        </div>
+    </body>

@@ -1,0 +1,139 @@
+<main class="contenedor">
+    <form action="/editar-perfil" method="POST" class="default-form">
+    
+        <div class="formulario">
+            <h2 class="Bienvenido">Edita tus Datos</h2>
+
+            {{!-- Nombre --}}
+            <div class="campo">
+                <label>Nombre</label>
+                <input value="{{usuario.nombre}}" type="text" name="nombre" placeholder="Tu Nombre">
+            </div>
+
+            {{!-- Codigo --}}
+            <div class="campo">
+                <label>Codigo</label>
+                <input value="{{usuario.codigo}}" type="text" name="codigo" placeholder="Tu Codigo">
+            </div>
+
+            {{!-- Celular --}}
+            <div class="campo">
+                <label>Celular</label>
+                <input value="{{usuario.celular}}" type="number" name="celular" placeholder="Tu Celular">
+            </div>
+
+            {{!-- Experiencia --}}
+            <div class="campo">
+                <label>Experiencia</label>
+                <input value="{{usuario.experiencia}}" type="number" name="experiencia" placeholder="Años de Experiencia">
+            </div>
+
+            {{!-- email --}}
+            <div class="campo">
+                <label>E-mail</label>
+                <input value="{{usuario.email}}" type="email" name="email" placeholder="Tu E-mail">
+            </div>
+
+            {{!-- Descripción --}}
+            <div class="campo">
+                <label>Descripción</label>
+                <input value="{{usuario.descripcion}}" type="text" name="descripcion" placeholder="Descripción de tus Habilidades">
+            </div>
+
+            {{!-- Password --}}
+            <div class="campo wrapp-input">
+                <label>Password</label>
+                <span class="icon-eye">
+                    <i class="fa-solid fa-eye-slash "></i>
+                </span>
+                <input type="password" name="password" placeholder="Ingrese su Contraseña" > 
+            </div>
+
+            {{!-- Habilidades --}}
+            <div class="campo wrapp-input">
+                <div class="separador__formulario">
+                    <label for="skills_input" class="formulario__label">Habilidades (separadas por coma)</label>
+                    <input
+                        type="text"
+                        class="formulario__input"
+                        id="skills_input"
+                        {{!-- name="skills" --}}
+                        placeholder="Node.js, PHP, CSS, Laravel, UX / UI"
+                    >
+
+                    <div id="skills" class="formulario__listado"></div>
+                    <input type="hidden" name="skills" value="{{usuario.skills}}"> 
+
+                </div>
+            </div>
+
+        
+            <div class="campo">
+                <input type="submit" class="btn btn-azul" value="Guardar Cambios">
+            </div>
+
+        </div>
+    </form>
+</main>
+
+<script>
+
+(function() {
+
+    const skillsInput = document.querySelector('#skills_input');
+    const skillsInputHidden = document.querySelector('[name="skills"]');
+
+    if(skillsInput) {
+
+        const skillsDiv = document.querySelector('#skills')
+        let skills = [];
+
+        // Recuperar del input oculto
+        if(skillsInputHidden.value !== '') {
+            skills = skillsInputHidden.value.split(',');
+            mostrarSkills();
+        }
+ 
+        // Escuchar los cambios en el input
+        skillsInput.addEventListener('keypress', guardarTag)
+
+        function guardarTag(e) {
+            if(e.keyCode === 44) {
+                if(e.target.value.trim() === '' || e.target.value < 1 ){    // Validar espacios vacios
+                    return
+                }
+                e.preventDefault();  // Prevenir la acción
+                skills = [...skills, e.target.value.trim()]  // Llenamos el arreglo
+                skillsInput.value = '';  // Limpiar el arreglo
+
+                mostrarSkills();
+                //  console.log(skills) 
+            }
+        }
+
+        function mostrarSkills() {
+            skillsDiv.textContent = '';
+            // interamos en cada etiqueta 
+            skills.forEach( skills => {
+                const etiqueta = document.createElement('LI');
+                etiqueta.classList.add('formulario__skills')
+                etiqueta.textContent = skills;
+                etiqueta.ondblclick = eliminarskills
+                skillsDiv.appendChild(etiqueta)
+            })
+            actualizarInputHidden();
+        }   
+
+        function eliminarskills(e) {
+            e.target.remove()
+            skills = skills.filter(skills => skills !== e.target.textContent)
+            actualizarInputHidden();
+        }
+
+        function actualizarInputHidden() {
+           skillsInputHidden.value = skills.toString();
+        }
+    }
+
+})();
+</script>

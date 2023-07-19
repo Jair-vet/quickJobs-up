@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700,900" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/39a7eb68d5.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" /> 
+    
+    <link rel="stylesheet" href="/css/trix.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <title>{{nombrePagina}}</title>
+</head>
+<body>
+    
+    <div class="nombre-sitio contenedor">
+        <h1>
+            <a href="/">Quick<span>Jobs</span>  </a>
+        </h1>
+        {{!-- <h2>Herramientas de Desarrollo<br> <span class="typed"> </span></h2> --}}
+
+        {{#if barra}}
+            <div class="navegacion-box">
+                <div class="buscador">
+                    <form action="/buscador" method="POST">
+                        <input type="text" name="q" class="buscar">
+                        <input type="submit" value="Buscar">
+                    </form>
+                </div>
+                <div class="navegacion">
+                    <a href="/crear-cuenta" class="btn ">Registrarse</a>
+                    <a href="/iniciar-sesion" class="btn ">Ingresar</a>
+                    <a href="/empresas" class="btn ">Empresas</a>
+                    {{#if sesion}}
+                        <a href="/administracion" class="btn ">Administración</a>
+                    {{/if}}
+                    {{#if sesionEstudiante}}
+                        <a href="/administracion-estudiante" class="btn ">Administración</a>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
+
+        {{#if regresar}}
+            <div class="navegacion-box">
+                <div class="navegacion">
+                    <a href="/" class="btn ">Inicio</a>
+                </div>
+            </div>
+        {{/if}}
+
+
+        {{#if cerrarSesion}}
+            <div class="cerrar-sesion">
+                <div class="contenedor-bienvenida">
+                    <div class="bienvenido" >
+                        {{#if sesion}}
+                            <p >Bienvenido <span>{{empresa}}</span></p>
+                        {{/if}}
+                        {{#if sesionAtras}}
+                            <p >Bienvenido <span>{{empresa}}</span></p>
+                        {{/if}}
+                        {{#if sesionEstudiante}}
+                            <p >Bienvenido <span>{{nombre}}</span></p>
+                        {{/if}}
+                    </div>
+                        {{#if logo}}
+                            <div class="modal-container">
+                                <img src="{{logo}}" class="admin-perfil">
+                            </div>
+                        {{/if}}
+                        {{#if Nologo}}
+                            <div class="modal-container">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="perfil" class="admin-perfil"/>
+                            </div>
+                        {{/if}}
+                </div>
+                <div class="navegar">
+                    {{#if sesion}}
+                        <a href="/administracion" class="btn ">Administración</a>
+                    {{/if}}
+                    {{#if sesionEstudiante}}
+                        <a href="/administracion-estudiante" class="btn ">Administración</a>
+                    {{/if}}
+                    {{#if sesionCandidato}}
+                        <a href="/administracion-estudiante" class="btn ">Administración</a>
+                    {{/if}}
+                    {{#if atras}}
+                        <a href="/mostrar-estudiante" class="btn ">Regresar</a>
+                    {{/if}}
+                    <a href="/cerrar-sesion" class="btn">Cerrar Sesión</a>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+
+    <header class="header">
+        <div class="header__contenedor">
+            <div class="site-header contenedor ">
+
+                <h2 class="herramientas">Herramientas de Desarrollo<br> <span class="typed"> </span></h2>
+     
+                <h2 class="header__logo">{{nombrePagina}}</h2>
+                {{#if tagline}}
+                    <p class="tagline">{{tagline}}</p>
+                {{/if}}
+
+                    {{!-- Botón Crear una nueva Vacante --}}
+                {{#if botonVacante}}
+                    <a href="/vacantes/nueva" class="btn btn-azul">Publicar Nueva Vacante</a>
+                {{/if}}  
+                {{#if boton}}
+                    <div class="navegacion-empresa">
+                        <a href="/crear-cuenta" class="btn btn-azul">Crear Una Cuenta</a>
+                    </div>
+                {{/if}}  
+                {{#if botonEmpresa}}
+                    <div class="navegacion-empresa">
+                        <a href="/registro-empresa" class="btn btn-azul">Registar Empresa</a>
+                        <a href="/iniciar-sesion-empresa" class="btn btn-azul">Ingresar como Empresa</a>
+                    </div>
+                {{/if}}  
+             </div>
+        </div>
+    </header>
+
+    {{!-- Header de la página principal --}}
+    <header class="site-header contenedor separador"> 
+    </header>
+
+    {{!-- Mensaje de Alerta --}}
+    <div class="contenido-principal contenedor">
+        {{#if mensajes}}
+            <div class="alertas">
+                {{#mostrarAlertas mensajes}}
+                    <li>do</li>
+                {{/mostrarAlertas}}
+            </div>
+        {{/if}}
+        {{{body}}}
+    </div>
+
+    {{!-- Paginacion --}}
+    {{#if paginacion}}
+    <div class="contenedor-paginador">
+        <div class="paginador">
+            <ul class="paginas">
+                {{#if activarPrev}}
+                    <a href="/?page={{prevPage}}" class="btn btn-mora prev"><i class="fas fa-backward"></i> Prev </a>
+                {{/if}}
+                {{#if activarNext}}
+                    <a href="/?page={{nextPage}}" class="btn btn-mora next"> Next <i class="fas fa-forward"></i></a>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="container-footer">
+
+        <footer>
+            <div class="logo-footer">
+                <img src="https://res.cloudinary.com/dcylh3bib/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1664291728/Logo1_pxs2kd.jpg" alt="logo">
+            </div>
+
+            <div class="redes-footer">
+                <a href="#"><i class="fa-brands fa-github icon-redes-footer"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp icon-redes-footer"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram icon-redes-footer"></i></a>
+            </div>
+
+            <hr>
+            <h4>© 2022 QuickJobs - Todos los Derechos Reservados</h4>
+            <h5>Aceves Garcia Carlos Jair</h5>
+            <h5>Guillermo Gabriel Kelly Schmidt</h5>
+            <h5>Jonathan Samuel Santiago Cárdenas</h5>
+        </footer>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        const typed = new Typed('.typed', {
+            strings: ['HTML5', 'CSS3', 'CSSGrid', 'Flexbox', 'JavaScript', 'jQuery', 
+            'Node', 'Angular', 'VueJS', 'ReactJS', 'React Hooks', 'Redux', 'Apollo', 'GraphQL', 
+            'TypeScript', 'PHP', 'Laravel', 'Symfony', 'Python', 'Django', 'ORM', 'Sequelize', 
+            'Mongoose', 'SQL', 'MVC', 'SASS', 'WordPress', 'RxJs', 'Jest', 'Github', 'Java', 'C#',
+            'Flutter', 'Bootstrap', 'Vuetify', 'Swift', 'Kotlin', 'SwiftUI', 'GO', 'PostgreSQL',
+            'Selenium', 'Cypress', 'Postman', 'Docker', 'Jenkins', 'Jira', 'Kubernetes', 'DevOps',
+            
+        ],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        })
+
+        const prevPagina = () => {
+            alert({{ prev }})
+        }
+        const nextPagina = () => {
+           alert({{ next }})
+        }
+    </script>
+    <script src="/js/trix.js"></script>
+    <script src="/dist/bundle.js"></script>
+</body>
+</html>

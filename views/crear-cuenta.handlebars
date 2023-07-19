@@ -1,0 +1,206 @@
+<main class="contenedor">
+    <form action="/crear-cuenta" method="POST" class="default-form">
+
+         <div class="formulario">
+            <h2 class="Bienvenido">Ingresa tus Datos</h2>
+
+            {{!-- Nombre --}}
+            <div class="campo">
+                <label>Nombre</label>
+                <input value="{{usuario.nombre}}" type="text" name="nombre" placeholder="Tu Nombre" required>
+            </div>
+
+            {{!-- Codigo --}}
+            <div class="campo">
+                <label>Codigo</label>
+                <input value="{{usuario.codigo}}" type="text" name="codigo" placeholder="Tu Codigo" required>
+            </div>
+
+            {{!-- Celular --}}
+            <div class="campo">
+                <label>Celular</label>
+                <input value="{{usuario.celular}}" type="number" name="celular" placeholder="Tu Celular" required>
+            </div>
+
+            {{!-- Experiencia --}}
+            <div class="campo">
+                <label>Experiencia</label>
+                <input value="{{usuario.experiencia}}" type="number" name="experiencia" placeholder="Años de Experiencia" required>
+            </div>
+
+            {{!-- email --}}
+            <div class="campo">
+                <label>E-mail</label>
+                <input value="{{usuario.email}}" type="email" name="email" placeholder="Tu E-mail" required>
+            </div>
+
+            {{!-- Descripción --}}
+            <div class="campo">
+                <label>Descripción</label>
+                <input value="{{usuario.descripcion}}" type="text" name="descripcion" placeholder="Descripción de tu Vida Laboral">
+            </div>
+
+            {{!-- Password --}}
+           <div class="campo wrapp-input create-password">
+                <label>Password</label>
+                <input
+                type="password"
+                placeholder="Escribe tu password"
+                class="password"
+                name="password"
+                required/>
+                <i class="icon-eye bx bx-hide show-hide"></i>
+            </div>
+          
+          {{!-- Confirmar Password --}}
+            <div class="campo wrapp-input confirm-password">
+                <label>Confirmar Password</label>
+                <input
+                type="password"
+                placeholder="Confirma tu password"
+                class="confirmar"
+                name="confirmar"
+                required/>
+                <i class="icon-eye bx bx-hide show-hide"></i>
+            </div>
+
+            {{!-- Habilidades --}}
+            <div class="campo wrapp-input">
+                <div class="separador__formulario">
+                    <label for="skills_input" class="formulario__label">Habilidades (separadas por coma)</label>
+                    <input
+                        type="text"
+                        class="formulario__input"
+                        id="skills_input"
+                        {{!-- name="skills" --}}
+                        placeholder="Node.js, PHP, CSS, Laravel, UX / UI"
+                    >
+
+                    <div id="skills" class="formulario__listado"></div>
+                    <input type="hidden" name="skills" value="{{usuario.skills}}"> 
+
+                </div>
+            </div>
+        </div>
+
+        {{!-- Botones --}}
+        <div class="campo acciones">
+            <a href="/iniciar-sesion">Iniciar Sesión</a>
+        </div>
+
+        <div class="campo">
+            <input type="submit" value="Crear Cuenta" class="btn btn-azul">
+        </div>
+
+        {{!-- Selectores --}}
+        <h2 class="titulo-cuentas">Puedes Elegir el Tipo de Cuenta</h2>
+        <div class="container-all">
+          
+            {{!-- Estudiante --}}
+            <a href="/crear-cuenta" id="estudiante" class="container-box">
+                <div class="box">
+                    <h4 class="titulo">Estudiante</h4>
+
+                    <i class="fa-solid fa-users-viewfinder icon"></i>
+                    <p class="texto"> <span>Revisa Ofertas de Empleo de IT</span> 
+                        Registrate y conoce todas las Empresas que ofrecen Empleos nuevos a los que podras postularte.
+                    </p>
+                </div>
+            </a>
+
+            {{!-- Empresa --}}
+            <a href="/registro-empresa" id="empresa" class="container-box">
+                <div class="box">
+                    <h4 class="titulo" >Empresa</h4>
+
+                    <i class="fa-solid fa-business-time icon"></i>
+                    <p class="texto"> <span>Recluta perfiles IT en menos tiempo más fácilmente</span> 
+                        Registrate y Crea Empleos para tu empresa de una manera sencilla
+                    </p>
+                </div>
+            </a>
+        </div>
+    </form>
+</main>
+
+
+<script>
+    (function() {
+
+    const skillsInput = document.querySelector('#skills_input');
+    const skillsInputHidden = document.querySelector('[name="skills"]');
+
+    if(skillsInput) {
+
+        const skillsDiv = document.querySelector('#skills')
+        let skills = [];
+
+        // Recuperar del input oculto
+        if(skillsInputHidden.value !== '') {
+            skills = skillsInputHidden.value.split(',');
+            mostrarSkills();
+        }
+ 
+        // Escuchar los cambios en el input
+        skillsInput.addEventListener('keypress', guardarTag)
+
+        function guardarTag(e) {
+            if(e.keyCode === 44) {
+                if(e.target.value.trim() === '' || e.target.value < 1 ){    // Validar espacios vacios
+                    return
+                }
+                e.preventDefault();  // Prevenir la acción
+                skills = [...skills, e.target.value.trim()]  // Llenamos el arreglo
+                skillsInput.value = '';  // Limpiar el arreglo
+
+                mostrarSkills();
+                //  console.log(skills) 
+            }
+        }
+
+        function mostrarSkills() {
+            skillsDiv.textContent = '';
+            // interamos en cada etiqueta 
+            skills.forEach( skills => {
+                const etiqueta = document.createElement('LI');
+                etiqueta.classList.add('formulario__skills')
+                etiqueta.textContent = skills;
+                etiqueta.ondblclick = eliminarskills
+                skillsDiv.appendChild(etiqueta)
+            })
+            actualizarInputHidden();
+        }   
+
+        function eliminarskills(e) {
+            e.target.remove()
+            skills = skills.filter(skills => skills !== e.target.textContent)
+            actualizarInputHidden();
+        }
+
+        function actualizarInputHidden() {
+           skillsInputHidden.value = skills.toString();
+        }
+    }
+
+})();
+    const form = document.querySelector("form"),
+    passField = form.querySelector(".create-password"),
+    passInput = passField.querySelector(".password"),
+    cPassField = form.querySelector(".confirm-password"),
+    cPassInput = cPassField.querySelector(".confirmar");
+
+    // Hide and show password
+    const eyeIcons = document.querySelectorAll(".show-hide");
+
+    eyeIcons.forEach((eyeIcon) => {
+    eyeIcon.addEventListener("click", () => {
+        const pInput = eyeIcon.parentElement.querySelector("input"); //getting parent element of eye icon and selecting the password input
+        if (pInput.type === "password") {
+        eyeIcon.classList.replace("bx-hide", "bx-show");
+        return (pInput.type = "text");
+        }
+        eyeIcon.classList.replace("bx-show", "bx-hide");
+        pInput.type = "password";
+    });
+    });
+</script>

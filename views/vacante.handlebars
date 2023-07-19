@@ -1,0 +1,97 @@
+<div class="contenido-superior vacante contenedor">
+    {{!-- empresa --}}
+    <div class="caja">
+        <p class="etiqueta">Empresa</p>
+        <p class="nombre">{{reclutador.empresa}}</p>
+    </div>
+    {{!-- Ubicación --}}
+    <div class="caja">
+        <p class="etiqueta">Ubicación</p>
+        <p class="nombre">{{vacante.ubicacion}}</p>
+    </div>
+    {{!-- Contrato --}}
+    <div class="caja">
+        <p class="etiqueta">Contrato</p>
+        <p class="nombre contrato">{{vacante.contrato}}</p>
+    </div>
+    {{!-- Salario --}}
+    <div class="caja">
+        <p class="etiqueta">Salario</p>
+        <p class="nombre">$ {{vacante.salario}}</p>
+    </div>
+</div>
+
+<div class="vacante-contenedor contenedor">
+    <main class="contenido">
+        <h2>Descripción del Puesto</h2>
+        <div class="vacante-descripcion">
+            {{{vacante.descripcion}}}
+        </div>
+
+        {{#if editarVacante}}
+            <a href="/vacantes/editar/{{vacante.url}}" class="btn btn-azul editar-btn">Editar Vacante</a>
+        {{/if}}
+    </main>
+    <aside class="sidebar">
+        <h2>Conocimientos Deseados</h2>
+        <ul class="skillsVacante">
+            {{#each vacante.skills}}
+                <li class="skillsVacante">{{this}}</li>
+            {{/each}}
+        </ul>
+    </aside>
+</div>
+
+<div class="contenedor datos-reclutador">
+    <div class="enviar-datos">
+        <h2>Contactar Reclutador</h2>
+        <p>Llena el siguiente formulario, sube tu curriculum y pronto te contactaremos</p>
+
+        <form method="POST" action="/vacantes/{{vacante.url}}" class="default-form" enctype="multipart/form-data">
+            {{!-- Nombre --}}
+            <div class="campo">
+                <label>Nombre</label>
+                <input type="text" name="nombre" placeholder="Tu Nombre" required>
+            </div>
+
+            {{!-- Email --}}
+            <div class="campo">
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="Tu Email" required>
+            </div>
+
+            {{!-- Telefono --}}
+            <div class="campo">
+                <label>Teléfono</label>
+                <input type="text" name="cel" placeholder="Tu Teléfono" required>
+            </div>
+
+            {{!-- CV --}}
+            <div class="file-select">
+                <label>CV (PDF)</label>
+                <input type="file" name="cv" required>
+            </div>
+
+            {{!-- Boton --}}
+            <div class="campo">
+                <input type="submit" class="btn btn-verde" value="Enviar">
+            </div>
+        </form>
+
+    </div>
+
+    <div class="info-reclutador">
+        <h2>Información Reclutador</h2>
+        <div class="informacion">
+            <div class="campo">
+                <label>Empresa</label>
+                <p>{{reclutador.empresa}}</p>
+            </div>
+            <p>{{reclutador.email}}</p>
+            <img src="{{imagenEmpresa}}">
+            {{#if Nologo}}
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="perfil" class="admin-perfil"/>
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<main class="contenedor">
+    <form action="/logo-estudiante" method="POST" class="default-form" enctype="multipart/form-data">
+        
+        <h1>Sube un Imagen para Identificarte</h1>
+        
+        <div class="box-logo">
+
+            <div class="logotipo">
+                <div class="logo-imagen">
+                    <img src="uploads/perfiles/{{usuario.imagen}}" class="admin-perfil">
+                </div>
+                <div class="contenedor-btn-file bordeado">
+                    <i class="fas fa-file"></i>
+                        Adjuntar archivo
+                    <label for="btn-file"></label>
+                    <input type="file" id="btn-file" name="imagen">
+                </div>
+            </div>
+        </div>
+
+        <div class="campo">
+            <input type="submit" class="btn btn-azul" value="Guardar Cambios">
+        </div>
+
+
+    </form>
+</main>

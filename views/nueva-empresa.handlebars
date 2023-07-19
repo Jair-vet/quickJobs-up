@@ -1,0 +1,64 @@
+<main class="contenedor">
+    <form action="/empresas/nueva" method="POST" class="default-form">
+
+        {{!-- Empresa --}}
+        <div class="campo">
+            <label>Empresa</label>
+            <input type="text" name="empresa" placeholder="El Nombre de Tu Empresa" required>
+        </div>
+
+        {{!-- ubicacion --}}
+        <div class="campo">
+            <label>Ubicación</label>
+            <input type="text" name="ubicacion" placeholder="Escribe tu Ubicación" required>
+        </div>
+
+        {{!-- Encargado --}}
+        <div class="campo">
+            <label>Encargado</label>
+            <input type="text" name="jefe" placeholder="Escribe el nombre del Encargado" required>
+        </div>
+
+        {{!-- Telefono --}}
+        <div class="campo">
+            <label>Celular</label>
+            <input type="text" name="celular" placeholder="Escribe tu Celular de Contacto" required>
+        </div>
+
+        {{!-- descripcion --}}
+        <div class="campo">
+            <label>Tipo de Empresa</label>
+            <input type="text" name="descripcion" placeholder="Describe tu Empresa" required>
+        </div>
+
+        {{!-- Email --}}
+        <div class="campo">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Escribe tu Celular de Contacto" required>
+        </div>
+
+        {{!-- Password --}}
+        <div class="wrapp-input">
+            <label>Password</label>
+            <span class="icon-eye">
+                <i class="fa-solid fa-eye-slash "></i>
+            </span>
+            <input type="password" name="password" placeholder="Ingrese su Contraseña" required> 
+        </div>
+
+        {{!-- Imagen --}}
+        <div class="campo">
+            <label>Logo</label>
+            <input type="file" name="logo" placeholder="Tu logo de perfil">
+            <img src="uploads/logos/{{empresas.logo}}" class="logo-empresa">
+        </div>
+
+        <div class="campo acciones">
+            <a href="/">Volver</a>
+        </div>
+
+        <div class="campo">
+            <input type="submit" value="Crear Cuenta" class="btn btn-azul">
+        </div>
+    </form>
+</main>

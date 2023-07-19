@@ -1,0 +1,53 @@
+<main class="contenedor">
+    <form action="/editar-empresa" method="POST" class="default-form">
+         
+         <div class="formulario">
+            <h2 class="Bienvenido">Bienvenido Editar tus Datos</h2>
+
+            <div>
+                {{!-- Nombre Empresa --}}
+                <div class="campo">
+                    <label>Nombre Empresa</label>
+                    <input type="text" value="{{ empresa }}" name="empresa" placeholder="Escibe el Nombre de Tu Empresa" >
+                </div>
+
+                {{!-- Nombre Jefe--}}
+                <div class="campo">
+                    <label>Nombre Encargado</label>
+                    <input type="text" value="{{{ usuario.jefe }}}" name="jefe" placeholder="Escibe el Nombre del Encargado" >
+                </div>
+
+                {{!-- Celular --}}
+                <div class="campo">
+                    <label>Celular</label>
+                    <input type="text" value="{{{ usuario.celular }}}" name="celular" placeholder="Escibe tu celular para Contactarte" >
+                </div>
+
+                {{!-- Email --}}
+                <div class="campo">
+                    <label>E-mail</label>
+                    <input type="email" value="{{{ usuario.email }}}" name="email" placeholder="Escribe Tu E-Mail" >
+                </div>
+
+                {{!-- Password --}}
+                <div class="campo wrapp-input">
+                    <label>Password</label>
+                    <span class="icon-eye">
+                        <i class="fa-solid fa-eye-slash "></i>
+                    </span>
+                    <input type="password" name="password" placeholder="Ingrese su Contraseña" > 
+                </div>
+
+            </div>
+
+        </div>
+        {{!-- Botones --}}
+        <div class="campo">
+            <input type="submit" class="btn btn-azul" value="Guardar Cambios">
+        </div>
+
+    </form>
+</main>
+
+
+    
